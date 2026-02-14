@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "App flow: after an image is generated, show an Edit section under it with controls for flash-element styling/positioning plus a free-text instruction box; clicking Edit triggers a placeholder image-editing step (no real external API integrated yet).",
+  "architectural_notes": [
+    "Image editing automation will be implemented as a placeholder integration point (external image-editing API/service not yet selected).",
+    "Edit UI should appear directly under the generated image and include both structured controls (flash element styling/position) and an unstructured instruction textbox; pressing 'Edit' triggers the edit flow."
+  ],
+  "known_issues": [
+    "No external image-editing API selected; 'Edit' can only execute placeholder behavior until a service is chosen."
+  ],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-add-an-edit-section-directly-under-the-generated-creative-preview-image-that-includes-1-an-edit-button-and-2-a-large-free-text-input-where-users-can-type-edit-instructions-describing-what-they-want-changed-in-the-generated-image",
+      "title": "Add an \"Edit\" section directly under the generated creative preview image that includes: (1) an \"Edit\" button, and (2) a large free-text input where users can type edit instructions describing what they want changed in the generated image.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-extend-flash-overlay-controls-to-support-user-control-over-flash-elements-including-color-size-position-and-animation-speed-and-wire-these-controls-into-the-canvas-flash-overlay-rendering-so-changes-are-reflected-in-the-generated-preview-image",
+      "title": "Extend flash overlay controls to support user control over flash elements including color, size, position, and animation speed, and wire these controls into the canvas flash overlay rendering so changes are reflected in the generated preview image.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-edit-button-flow-as-a-placeholder-no-external-image-editing-api-integration-clicking-edit-must-run-an-async-placeholder-edit-step-using-the-current-generated-image-the-user-s-instruction-text-show-a-loading-state-and-then-present-a-resulting-edited-image-output-without-calling-any-external-ai-llm-services",
+      "title": "Implement the \"Edit\" button flow as a placeholder (no external image-editing API integration): clicking \"Edit\" must run an async placeholder edit step using the current generated image + the user's instruction text, show a loading state, and then present a resulting \"edited\" image output without calling any external AI/LLM services.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add an Edit panel under each generated image with controls for flash elements (color/size/position/animation speed) plus a free-text instruction box; Edit button runs the UI/flow and calls a placeholder image-editing integration to apply instructions to the image.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Add an Edit panel under the generated creative with flash overlay controls + free-text edit instructions (placeholder edit execution)",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

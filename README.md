@@ -1,2 +1,3 @@
-# add-an-edit-panel-under-the-generated-creative-with-flash-overlay-controls-free
-Exported from Caffeine project: Add an Edit panel under the generated creative with flash overlay controls + free-text edit instructions (placeholder edit execution)
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

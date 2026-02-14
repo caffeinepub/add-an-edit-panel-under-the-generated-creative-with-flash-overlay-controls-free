@@ -1,0 +1,27 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T21:04:16.488Z",
+  "summary": "Diff implements a new Edit instructions field in Studio state with persistence/backward-compat loading, adds a placeholder async image editor module, and extends flash overlay settings/types/rendering to include color/size/position/animationSpeed; CreativePreview is updated to run the placeholder edit flow and manage edited image output. One potentially unrequested behavior (auto-regenerate on seed change) appears added.",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Auto-regenerate the creative when the seed changes (side-effect regeneration)",
+      "reason": "BuildRequest did not request automatic regeneration behavior tied to seed changes; only requested adding UI controls and wiring them into generation/edit flows.",
+      "evidence": [
+        "frontend/src/features/studio/components/CreativePreview.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/features/studio/components/CreativePreview.tsx",
+    "frontend/src/features/studio/generation/flashOverlayRenderer.ts",
+    "frontend/src/features/studio/generation/placeholderImageEditor.ts",
+    "frontend/src/features/studio/state/persistence.ts",
+    "frontend/src/features/studio/state/studioTypes.ts",
+    "frontend/src/features/studio/state/useStudioState.ts",
+    "project_state.json"
+  ]
+}

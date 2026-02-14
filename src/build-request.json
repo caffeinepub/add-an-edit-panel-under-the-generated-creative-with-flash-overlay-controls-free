@@ -1,0 +1,85 @@
+{
+  "kind": "build_request",
+  "title": "Add an Edit panel under the generated creative with flash overlay controls + free-text edit instructions (placeholder edit execution)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add an \"Edit\" section directly under the generated creative preview image that includes: (1) an \"Edit\" button, and (2) a large free-text input where users can type edit instructions describing what they want changed in the generated image.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "they should appear right under the generated image with the option \"edit\" and have a blank space where users can write down what they want to adjust from image (For example, change the background color, change written phrase, adjust words, move elements, amplify logo, etc)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After a creative is generated and the preview image is visible, an Edit section is rendered immediately below the preview image card.",
+        "The Edit section contains an English-labeled multiline text area for edit instructions and an \"Edit\" button.",
+        "The user can type instructions and the text remains intact while navigating within the Output step (and persists across refresh if Studio state is persisted)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Extend flash overlay controls to support user control over flash elements including color, size, position, and animation speed, and wire these controls into the canvas flash overlay rendering so changes are reflected in the generated preview image.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Yes, if posible, build it",
+          "1. All the elements you mentioned."
+        ]
+      },
+      "acceptanceCriteria": [
+        "The UI exposes flash overlay controls for at least: color, size, position, and animation speed, in addition to existing flash settings.",
+        "Updating any flash overlay control and regenerating the creative produces a preview where flash overlays reflect the updated settings.",
+        "Flash overlay settings are stored in the existing Studio state and survive page refresh (backward compatible with older saved state)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement the \"Edit\" button flow as a placeholder (no external image-editing API integration): clicking \"Edit\" must run an async placeholder edit step using the current generated image + the user's instruction text, show a loading state, and then present a resulting \"edited\" image output without calling any external AI/LLM services.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "The idea is people put the instructions for editing, they click on a button that says \"edit\" and after the app follows the instructions applying them to the image that was generated",
+          "Yes, please take the second option"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking \"Edit\" triggers a visible in-progress/loading state and disables repeated clicks while running.",
+        "When the placeholder completes, the UI shows an edited image result (it may be visually identical, but must be treated as a separate result in the UI) and allows the user to download it.",
+        "No external image-editing service is called; the code clearly isolates a single placeholder function/module that can be replaced later with a real REST integration."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit any files under frontend/src/components/ui or any other frontend immutable paths listed in SYSTEM_CONTEXT.",
+    "Do not integrate OpenAI/Anthropic/LLM services or any third-party auth beyond Internet Identity."
+  ],
+  "nonGoals": [
+    "Implementing real image editing that truly applies user instructions via an external image-editing API.",
+    "Adding new backend canisters/services or any external database."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Studio Output: Edit panel under creative preview + enhanced flash overlay controls + placeholder edit flow",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add an Edit section directly under the generated creative preview with an Edit button and a multiline edit-instructions input persisted in Studio state",
+      "acceptanceCriteria": [
+        "After a creative is generated and the preview image is visible, an Edit section is rendered immediately below the preview image card.",
+        "The Edit section contains an English-labeled multiline text area for edit instructions and an \"Edit\" button.",
+        "The user can type instructions and the text remains intact while navigating within the Output step (and persists across refresh if Studio state is persisted)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/studio/state/studioTypes.ts",
+          "operation": "modify",
+          "description": "Extend StudioState typings to include persisted edit instructions text (e.g., a new field for creative edit instructions) so the Edit panel can store user input in the existing Studio state."
+        },
+        {
+          "path": "frontend/src/features/studio/state/useStudioState.ts",
+          "operation": "modify",
+          "description": "Add store state + update action for edit instructions and ensure saveState() is called when the user updates the instructions so it persists while navigating within the Output step and across refresh."
+        },
+        {
+          "path": "frontend/src/features/studio/state/persistence.ts",
+          "operation": "modify",
+          "description": "Update localStorage load/save compatibility to include the new edit instructions state with backward-compatible defaults when older saved state is missing the field."
+        },
+        {
+          "path": "frontend/src/features/studio/components/CreativePreview.tsx",
+          "operation": "modify",
+          "description": "Render a new \"Edit\" section immediately below the generated preview image (within the existing preview Card): include an English-labeled multiline textarea bound to Studio state and an \"Edit\" button. Ensure the textarea value is sourced from and written to the Zustand Studio store."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Extend flash overlay controls to include color, size, position, and animation speed and apply them in flash overlay rendering",
+      "acceptanceCriteria": [
+        "The UI exposes flash overlay controls for at least: color, size, position, and animation speed, in addition to existing flash settings.",
+        "Updating any flash overlay control and regenerating the creative produces a preview where flash overlays reflect the updated settings.",
+        "Flash overlay settings are stored in the existing Studio state and survive page refresh (backward compatible with older saved state)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/studio/state/studioTypes.ts",
+          "operation": "modify",
+          "description": "Expand FlashOverlaySettings to include additional user-controlled properties (at minimum: color, size, position, animation speed) while keeping existing properties; update any related type exports as needed."
+        },
+        {
+          "path": "frontend/src/features/studio/state/useStudioState.ts",
+          "operation": "modify",
+          "description": "Update defaultCreativeSettings.flashOverlaySettings to include defaults for new flash overlay properties and ensure updateCreativeSettings continues to merge partial flashOverlaySettings updates correctly."
+        },
+        {
+          "path": "frontend/src/features/studio/state/persistence.ts",
+          "operation": "modify",
+          "description": "Extend backward-compatible state loading to populate missing new flash overlay properties (color, size, position, animation speed) with defaults so older saved state still loads safely and persists new values after changes."
+        },
+        {
+          "path": "frontend/src/features/studio/components/CreativePreview.tsx",
+          "operation": "modify",
+          "description": "Add UI controls under the existing Flash Overlays collapsible for: color (e.g., a color picker input), size (slider), position (e.g., X/Y sliders or a combined position control), and animation speed (slider). Wire controls to updateCreativeSettings({ flashOverlaySettings: ... }) so values are stored in Studio state."
+        },
+        {
+          "path": "frontend/src/features/studio/generation/flashOverlayRenderer.ts",
+          "operation": "modify",
+          "description": "Update flash overlay rendering logic to apply the new settings: tint/gradient color based on user color, overall size scaling, positional offsets/targeting based on user position, and a deterministic visual effect influenced by animation speed so regenerated previews reflect the updated controls."
+        },
+        {
+          "path": "frontend/src/features/studio/generation/canvasGenerator.ts",
+          "operation": "modify",
+          "description": "Ensure canvas generation passes the updated flash overlay settings through unchanged and that regenerated creatives reflect flash overlay control changes when the user clicks Generate/Regenerate."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement a placeholder async Edit flow that produces an edited image result (no external services), shows loading state, and supports download",
+      "acceptanceCriteria": [
+        "Clicking \"Edit\" triggers a visible in-progress/loading state and disables repeated clicks while running.",
+        "When the placeholder completes, the UI shows an edited image result (it may be visually identical, but must be treated as a separate result in the UI) and allows the user to download it.",
+        "No external image-editing service is called; the code clearly isolates a single placeholder function/module that can be replaced later with a real REST integration."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/studio/generation/placeholderImageEditor.ts",
+          "operation": "create",
+          "description": "Create a single isolated placeholder async module/function that accepts the current generated image (data URL) plus the user's instruction text and returns an \"edited\" image result (e.g., by re-encoding or deterministic minor transform). This module must not call any external AI/LLM or third-party services and should be easy to replace later."
+        },
+        {
+          "path": "frontend/src/features/studio/components/CreativePreview.tsx",
+          "operation": "modify",
+          "description": "Wire the Edit button to call the placeholder edit module asynchronously using the current preview image + stored instructions; show a loading state and disable repeated clicks while running; then render an \"Edited\" result (separate from the original preview) with its own download action."
+        }
+      ]
+    }
+  ]
+}

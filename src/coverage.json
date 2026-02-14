@@ -1,0 +1,81 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T21:04:16.491Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 3,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Add an \"Edit\" section directly under the generated creative preview image that includes: (1) an \"Edit\" button, and (2) a large free-text input where users can type edit instructions describing what they want changed in the generated image.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/studio/state/studioTypes.ts",
+          "frontend/src/features/studio/state/useStudioState.ts",
+          "frontend/src/features/studio/state/persistence.ts",
+          "frontend/src/features/studio/components/CreativePreview.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/studio/state/studioTypes.ts",
+          "frontend/src/features/studio/state/useStudioState.ts",
+          "frontend/src/features/studio/state/persistence.ts",
+          "frontend/src/features/studio/components/CreativePreview.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Extend flash overlay controls to support user control over flash elements including color, size, position, and animation speed, and wire these controls into the canvas flash overlay rendering so changes are reflected in the generated preview image.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/studio/state/studioTypes.ts",
+          "frontend/src/features/studio/state/useStudioState.ts",
+          "frontend/src/features/studio/state/persistence.ts",
+          "frontend/src/features/studio/components/CreativePreview.tsx",
+          "frontend/src/features/studio/generation/flashOverlayRenderer.ts",
+          "frontend/src/features/studio/generation/canvasGenerator.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/studio/state/studioTypes.ts",
+          "frontend/src/features/studio/state/useStudioState.ts",
+          "frontend/src/features/studio/state/persistence.ts",
+          "frontend/src/features/studio/components/CreativePreview.tsx",
+          "frontend/src/features/studio/generation/flashOverlayRenderer.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement the \"Edit\" button flow as a placeholder (no external image-editing API integration): clicking \"Edit\" must run an async placeholder edit step using the current generated image + the user's instruction text, show a loading state, and then present a resulting \"edited\" image output without calling any external AI/LLM services.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/studio/generation/placeholderImageEditor.ts",
+          "frontend/src/features/studio/components/CreativePreview.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/studio/generation/placeholderImageEditor.ts",
+          "frontend/src/features/studio/components/CreativePreview.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/features/studio/components/CreativePreview.tsx",
+    "frontend/src/features/studio/generation/flashOverlayRenderer.ts",
+    "frontend/src/features/studio/generation/placeholderImageEditor.ts",
+    "frontend/src/features/studio/state/persistence.ts",
+    "frontend/src/features/studio/state/studioTypes.ts",
+    "frontend/src/features/studio/state/useStudioState.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-an-edit-section-directly-under-the-generated-creative-preview-image-that-includes-1-an-edit-button-and-2-a-large-free-text-input-where-users-can-type-edit-instructions-describing-what-they-want-changed-in-the-generated-image",
+      "featureTitle": "Add an \"Edit\" section directly under the generated creative preview image that includes: (1) an \"Edit\" button, and (2) a large free-text input where users can type edit instructions describing what they want changed in the generated image.",
+      "files": [
+        "frontend/src/features/studio/components/CreativePreview.tsx",
+        "frontend/src/features/studio/state/persistence.ts",
+        "frontend/src/features/studio/state/studioTypes.ts",
+        "frontend/src/features/studio/state/useStudioState.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-extend-flash-overlay-controls-to-support-user-control-over-flash-elements-including-color-size-position-and-animation-speed-and-wire-these-controls-into-the-canvas-flash-overlay-rendering-so-changes-are-reflected-in-the-generated-preview-image",
+      "featureTitle": "Extend flash overlay controls to support user control over flash elements including color, size, position, and animation speed, and wire these controls into the canvas flash overlay rendering so changes are reflected in the generated preview image.",
+      "files": [
+        "frontend/src/features/studio/components/CreativePreview.tsx",
+        "frontend/src/features/studio/generation/flashOverlayRenderer.ts",
+        "frontend/src/features/studio/state/persistence.ts",
+        "frontend/src/features/studio/state/studioTypes.ts",
+        "frontend/src/features/studio/state/useStudioState.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-edit-button-flow-as-a-placeholder-no-external-image-editing-api-integration-clicking-edit-must-run-an-async-placeholder-edit-step-using-the-current-generated-image-the-user-s-instruction-text-show-a-loading-state-and-then-present-a-resulting-edited-image-output-without-calling-any-external-ai-llm-services",
+      "featureTitle": "Implement the \"Edit\" button flow as a placeholder (no external image-editing API integration): clicking \"Edit\" must run an async placeholder edit step using the current generated image + the user's instruction text, show a loading state, and then present a resulting \"edited\" image output without calling any external AI/LLM services.",
+      "files": [
+        "frontend/src/features/studio/components/CreativePreview.tsx",
+        "frontend/src/features/studio/generation/placeholderImageEditor.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
